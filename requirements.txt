@@ -1,5 +1,4 @@
 streamlit
-cv2
 numpy
 matplotlib.pyplot
 ultralytics
