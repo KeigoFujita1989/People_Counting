@@ -27,7 +27,7 @@ if video_file is not None:
     if st.button("物体検知を実行"):
         # YOLOv8で物体検知
         model = YOLO('yolov8n.pt')
-        results = model(video_path, vid_stride=10, stream=True, classes=0)
+        results = model(video_path, vid_stride=4, stream=True, classes=0)
 
         # 保存先のファイルパス
         save_path = "./output.mp4"
