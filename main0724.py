@@ -29,7 +29,7 @@ if video_file is not None:
         results = model(video_path, vid_stride=10, stream=True, classes=0)
 
         # 保存先のファイルパス
-        save_path = os.path.join(tempfile.gettempdir(), "output.mp4")
+        save_path = "./output.mp4"
 
         # 動画を保存する処理
         fourcc = cv2.VideoWriter_fourcc(*"avc1")
