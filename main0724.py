@@ -13,8 +13,13 @@ st.title("YOLOv8 物体検知アプリ")
 # 動画ファイルのアップロード
 video_file = st.file_uploader("動画ファイルをアップロードしてください", type=["mp4"])
 
-# 動画の表示
+# 前回に作成した動画データを削除
 if video_file is not None:
+    if os.path.exists("./output.mp4"):
+        os.remove("./output.mp4")
+    if os.path.exists("./output_encoded.mp4"):
+        os.remove("./output_encoded.mp4")
+
     # 動画ファイルを保存
     video_path = os.path.join(tempfile.gettempdir(), "uploaded_video.mp4")
     with open(video_path, "wb") as f:
