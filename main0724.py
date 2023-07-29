@@ -5,6 +5,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 from ultralytics import YOLO
+import subprocess
 
 # Streamlitアプリのタイトルを設定
 st.title("YOLOv8 物体検知アプリ")
@@ -30,6 +31,7 @@ if video_file is not None:
 
         # 保存先のファイルパス
         save_path = "./output.mp4"
+        output_path = "./output_encoded.mp4"
 
         # 動画を保存する処理
         fourcc = cv2.VideoWriter_fourcc(*"mp4v")
@@ -73,10 +75,14 @@ if video_file is not None:
         # ファイルを閉じる
         video_writer.release()
 
-        # 検知結果の動画を表示
-        if os.path.exists(save_path):
-            st.write(f"動画ファイルが存在します。サイズは {os.path.getsize(save_path)} バイトです。")
-            st.video(save_path)
+        # FFmpegを使用して動画を再エンコード
+        command = f"ffmpeg -i {save_path} -vcodec libx264 {output_path}"
+        subprocess.call(command, shell=True)
+
+        # 再エンコードした動画を表示
+        if os.path.exists(output_path):
+            st.write(f"動画ファイルが存在します。サイズは {os.path.getsize(output_path)} バイトです。")
+            st.video(output_path)
         else:
             st.write("動画ファイルが存在しません。")
 
