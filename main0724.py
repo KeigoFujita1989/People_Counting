@@ -32,7 +32,7 @@ if video_file is not None:
         save_path = "./output.mp4"
 
         # 動画を保存する処理
-        fourcc = cv2.VideoWriter_fourcc(*"avc1")
+        fourcc = cv2.VideoWriter_fourcc(*"mp4v")
         video_writer = None
 
         # フレームレートを取得
